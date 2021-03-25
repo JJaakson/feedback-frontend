@@ -1,0 +1,86 @@
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-form-field {
+  width: 330px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: lightgray;
+}
+
+mat-label{
+  color: black;
+  width: 300px;
+  outline-color: gray;
+}
+
+button {
+  width: 300px;
+}
+
+.mat-option {
+  color: black;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.refresh-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  padding: 15px;
+}
+
+.input-forms{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  padding: 15px;
+}
+
+.feedback-table{
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-id {
+  flex: none;
+  width: 5%;
+}
+
+.mat-column-authorName {
+  flex: none;
+  width: 15%;
+}
+
+.mat-column-authorEmail {
+  flex: none;
+  width: 20%;
+}
+
+.mat-column-categories {
+  flex: none;
+  width: 25%;
+}
+
+.mat-column-content {
+  flex: none;
+  max-width: 35%;
+}

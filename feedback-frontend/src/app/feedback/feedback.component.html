@@ -1,17 +1,86 @@
-<div class="feedback-table-area">
-  <tr>
-    <th>#</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Category</th>
-    <th>Text</th>
-  </tr>
-  <li *ngFor="let feedback of feedbacks">
-    <th>{{feedback.id}}</th>
-    <th>{{feedback.authorName}}</th>
-    <th>{{feedback.authorEmail}}</th>
-    <th>{{feedback.content}}</th>
-    <th>{{feedback.content}}</th>
-  </li>
+<div class="text-center">
+  <div class="feedback-table">
+    <table *ngIf="feedbacks.length > 0" mat-table [dataSource]="feedbacks" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let feedback">{{feedback.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="authorName">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let feedback">{{feedback.authorName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="authorEmail">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let feedback">{{feedback.authorEmail}}</td>
+      </ng-container>
+      <ng-container matColumnDef="categories">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let feedback">{{getCategories(feedback.categories)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef>Text</th>
+        <td mat-cell *matCellDef="let feedback">{{feedback.content}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="refresh-button">
+    <button mat-raised-button color="primary"
+            (click)="getFeedbacks()">Refresh list</button>
+  </div>
 
+  <div class="input-forms">
+
+    <div>
+      <h1 class="h3 mb-3 fw-normal">Please give us feedback!</h1>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput #name required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Email address</mat-label>
+        <input matInput [formControl]="email" #finalEmail required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="email.untouched">Enter email</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput maxlength="200" #content required></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Select</mat-label>
+        <mat-select style="color: black" #categories multiple required>
+          <mat-optgroup>Application</mat-optgroup>
+          <mat-optgroup>
+            Health
+            <mat-option value="1">Patients portal</mat-option>
+            <mat-option value="2">Doctors portal</mat-option>
+          </mat-optgroup>
+          <mat-optgroup>
+            Health Remote visits portal
+            <mat-option value="3">Registration</mat-option>
+            <mat-option value="4">Virtual visit</mat-option>
+          </mat-optgroup>
+          <mat-optgroup>
+            Document management
+            <mat-option value="5">OpenKM</mat-option>
+            <mat-option value="6">Microsoft SharePoint</mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary"
+              (click)="addFeedback(name.value, finalEmail.value, content.value, categories.value)">Send</button>
+    </div>
+  </div>
 </div>

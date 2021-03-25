@@ -24,4 +24,10 @@ export class FeedbackService {
   getFeedbacks(): Observable<Feedback[]> {
     return this.http.get<Feedback[]>(`${this.feedbacksUrl}/all`)
   }
+
+  saveFeedback(feedback: Feedback): Observable<Feedback> {
+    console.log("posting")
+    console.log(feedback)
+    return this.http.post<Feedback>(this.feedbacksUrl, feedback, this.httpOptions);
+  }
 }
