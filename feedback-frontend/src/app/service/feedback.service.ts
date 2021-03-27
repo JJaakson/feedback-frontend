@@ -15,10 +15,7 @@ export class FeedbackService {
   };
 
   constructor(
-    private http: HttpClient,
-    /**
-     * messageService maybe?
-     */
+    private http: HttpClient
   ) { }
 
   getFeedbacks(): Observable<Feedback[]> {
@@ -26,8 +23,6 @@ export class FeedbackService {
   }
 
   saveFeedback(feedback: Feedback): Observable<Feedback> {
-    console.log("posting")
-    console.log(feedback)
     return this.http.post<Feedback>(this.feedbacksUrl, feedback, this.httpOptions);
   }
 }

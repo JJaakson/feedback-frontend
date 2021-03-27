@@ -36,7 +36,6 @@ export class FeedbackComponent implements OnInit {
   }
 
   addFeedback(authorName: String, authorEmail: String, content: String, categories: String[]): void {
-    console.log(categories)
     authorName = authorName.trim();
     authorEmail = authorEmail.trim();
     content = content.trim();
